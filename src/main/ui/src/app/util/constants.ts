@@ -1,15 +1,20 @@
-const API = 'http://localhost:8080';
 
 /**
  * Paths for the api calls.
  */
 const PATHS = {
-  LOGIN: API + '/account/login',
-  LOGOUT: API + 'logout',
-  REGISTER: API + '/account/register'
+  LOGIN: '/api/account/login',
+  LOGOUT: '/api/logout',
+  REGISTER: '/api/account/register'
+};
+
+const ROLES = {
+  EMPLOYEE: 'employee',
+  MANAGER: 'manager'
 };
 
 // Export constants
 export let constants = {
-  PATHS
+  PATHS,
+  ROLES
 };

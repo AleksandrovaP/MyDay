@@ -42,9 +42,9 @@ public  class User implements UserDetails {
     }
 
     public User(String username,String password,String fullName) {
-        this.username=username;
-        this.password= password;
-        this.fullName=fullName;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
     }
 
     @JsonIgnore
