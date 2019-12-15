@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import bg.fmi.myday.entities.User;
 import bg.fmi.myday.services.UserService;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("account")
 public class AccountController {
@@ -55,9 +57,10 @@ public class AccountController {
     // this is the login api/service
     @CrossOrigin
     @PostMapping("/login")
-    public ResponseEntity<?> user(@RequestBody User user) {
+    public ResponseEntity<?> user(@RequestBody User user, HttpSession session) {
         if (userService.find(user.getUsername()) != null) {
             logger.info("user logged " + user);
+            session.setAttribute("id",user.getId());
             // TODO: implement login
             return new ResponseEntity<>(user, HttpStatus.OK);
         }

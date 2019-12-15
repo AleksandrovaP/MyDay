@@ -1,9 +1,7 @@
 package bg.fmi.myday.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -12,7 +10,26 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private final String name;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public List<WorkingHours> getWorkingh() {
+        return workingh;
+    }
+
+    public void setWorkingh(List<WorkingHours> workingh) {
+        this.workingh = workingh;
+    }
+
     private final String username;
+    @ManyToMany
+    private List<WorkingHours> workingh;
 
     public Employee() {
         this.name = "";
