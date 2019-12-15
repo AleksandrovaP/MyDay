@@ -3,7 +3,7 @@ export class User {
   role: string = '';
   username: string = '';
   password: string = '';
-  fullName: string = '';
+  name: string = '';
 }
 
 export enum UserRole {

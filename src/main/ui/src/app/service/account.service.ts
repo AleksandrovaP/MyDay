@@ -16,7 +16,7 @@ export class AccountService {
   public getUser(username: string, role: UserRole) {
     if (role === UserRole.EMPLOYEE) {
       return this.http.get(constants.PATHS.EMPLOYEE + '/' + username).pipe(
-        map((response: HttpResponse<any>) => response.body));
+        map((response: HttpResponse<any>) => response));
     }
   }
 }
