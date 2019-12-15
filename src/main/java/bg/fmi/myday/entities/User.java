@@ -21,8 +21,6 @@ import java.util.Collection;
 @Table(name = "User")
 @Scope("session")
 public  class User implements UserDetails {
-    public static enum Role { USER }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

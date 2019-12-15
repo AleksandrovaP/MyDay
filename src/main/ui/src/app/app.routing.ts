@@ -10,9 +10,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:role/:username', component: ProfileComponent },
   { path: 'employees', component: ListEmployeesComponent },
   { path: 'add-employee', component: AddEmployeeComponent },
+  { path: 'list-employees', component: ListEmployeesComponent },
 
   { path: '**', redirectTo: 'login' }
 ];

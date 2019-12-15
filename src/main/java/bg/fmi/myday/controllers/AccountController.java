@@ -1,5 +1,7 @@
 package bg.fmi.myday.controllers;
 
+import bg.fmi.myday.entities.Employee;
+import bg.fmi.myday.services.EmployeeService;
 import bg.fmi.myday.util.UserAccessError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 
 import bg.fmi.myday.entities.User;
 import bg.fmi.myday.services.UserService;
@@ -26,6 +26,8 @@ public class AccountController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmployeeService employeeService;
 
     // request method to create a new account by a guest
     @CrossOrigin
@@ -39,7 +41,15 @@ public class AccountController {
         }
         newUser.setRole("USER");
 
-        return new ResponseEntity<User>(userService.save(newUser), HttpStatus.CREATED);
+        User user = userService.save(newUser);
+        if (user.getRole().equals("employee")) {
+            Employee employee = new Employee(user.getFullName(), user.getUsername());
+            employeeService.save(employee);
+        } else {
+           // TODO: do the same for manager
+        }
+
+        return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
     // this is the login api/service
@@ -48,10 +58,24 @@ public class AccountController {
     public ResponseEntity<?> user(@RequestBody User user) {
         if (userService.find(user.getUsername()) != null) {
             logger.info("user logged " + user);
+            // TODO: implement login
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(new UserAccessError("Username or password is incorrect"), HttpStatus.FORBIDDEN);
+    }
+    // this is the login api/service
+    @CrossOrigin
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        //TODO: Do actual logout
+//        if (userService.find(user.getUsername()) != null) {
+//            logger.info("user logged " + user);
+//            return new ResponseEntity<>(user, HttpStatus.OK);
+//        }
+//
+//        return new ResponseEntity<>(new UserAccessError("Username or password is incorrect"), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 

@@ -5,16 +5,11 @@
 const PATHS = {
   LOGIN: '/api/account/login',
   LOGOUT: '/api/logout',
-  REGISTER: '/api/account/register'
-};
-
-const ROLES = {
-  EMPLOYEE: 'employee',
-  MANAGER: 'manager'
+  REGISTER: '/api/account/register',
+  EMPLOYEE: '/api/employees'
 };
 
 // Export constants
 export let constants = {
-  PATHS,
-  ROLES
+  PATHS
 };

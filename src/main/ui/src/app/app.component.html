@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div class="main-container">
+  <header *ngIf="!isLoginOrRegisterPage()" class="header header-1">
+    <div class="branding">
+      <h4>MyDay</h4>
+    </div>
+  </header>
+  <div class="content-container">
+    <nav *ngIf="!isLoginOrRegisterPage()" class="sidenav">
+      <section class="sidenav-content">
+        <a [routerLink]="getProfileLink()" class="nav-link active">
+          My profile
+        </a>
+        <a class="nav-link" (click)="logout()">
+          Logout
+        </a>
+      </section>
+    </nav>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

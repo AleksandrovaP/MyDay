@@ -12,16 +12,16 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private final String name;
-    private final String email;
+    private final String username;
 
     public Employee() {
         this.name = "";
-        this.email = "";
+        this.username = "";
     }
 
-    public Employee(String name, String email) {
+    public Employee(String name, String username) {
         this.name = name;
-        this.email = email;
+        this.username = username;
     }
 
     public long getId() {
@@ -33,11 +33,11 @@ public class Employee {
     }
 
     public String getEmail() {
-        return email;
+        return username;
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", name=" + name + ", email=" + email + '}';
+        return "Employee{" + "id=" + id + ", name=" + name + ", username=" + username + '}';
     }
 }

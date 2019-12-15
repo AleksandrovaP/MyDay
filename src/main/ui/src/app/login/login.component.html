@@ -11,7 +11,7 @@
       <!-- Role -->
       <clr-select-container>
         <label class="clr-sr-only">User Role</label>
-        <select clrSelect name="type" formControlName="role">
+        <select clrSelect name="role" formControlName="role">
           <option value="employee">Employee</option>
           <option value="manager">Manager</option>
         </select>
@@ -21,7 +21,7 @@
       <!-- Email -->
       <clr-input-container>
         <label class="clr-sr-only">Email</label>
-        <input type="text" name="username" placeholder="Username" clrInput formControlName="username"/>
+        <input type="text" name="username" placeholder="Email" clrInput formControlName="username"/>
         <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
       </clr-input-container>
 

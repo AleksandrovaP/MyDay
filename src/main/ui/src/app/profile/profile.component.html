@@ -1,24 +1,42 @@
-<nav  class="navbar navbar-inverse">
-  <div class="container-fluid">
-
-    <ul class="nav navbar-nav">
-      <li class="active"  ><a>Home</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logOut()"></span> LogOut</a></li>
-    </ul>
+<div class="main-heading">
+  <h2>{{ user.fullName }}</h2>
+  <div toolbar>
+    <!-- buttons -->
+    <clr-dg-action-bar>
+      <clr-button-group [clrMenuPosition]="'bottom-right'" class="btn-sm">
+        <!-- add -->
+        <clr-button type="button" class="btn btn-sm btn-secondary" (click)="add()">
+          <clr-icon shape="plus" class="action-button"></clr-icon>Add working hours</clr-button>
+      </clr-button-group>
+    </clr-dg-action-bar>
   </div>
-</nav>
-
-<div class="container">
-
-  <!-- Jumbotron Header -->
-  <header class="jumbotron my-4">
-    <h1 class="display-3">  <strong>{{currentUser.fullName}}</strong>, Welcome to your app </h1>
-    <p class="lead"> welcome to your profile
-    </p>
-    <div class="row">
-    </div>
-  </header>
-
 </div>
+
+<!-- Datagrid -->
+<clr-datagrid class="main-datagrid" [clrDgLoading]="loading">
+  <!-- columns -->
+  <clr-dg-column [clrDgField]="'project'">Project</clr-dg-column>
+  <clr-dg-column [clrDgField]="'url'">Work</clr-dg-column>
+
+  <clr-dg-placeholder>
+    <div class="placeholder" *ngIf="!loading">No repositories added</div>
+  </clr-dg-placeholder>
+
+  <!-- rows -->
+  <clr-dg-row *clrDgItems="let item of items" [clrDgItem]="item">
+    <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.url }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <!-- pagination -->
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="20">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Repositories per page</clr-dg-page-size>
+      <span *ngIf="pagination?.totalItems > 0">
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
+      </span>
+      <span *ngIf="pagination?.totalItems === 0">0 of 0</span>
+      repositories
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

@@ -21,7 +21,7 @@ export class AuthenticationService {
       headers: headers
     }).pipe(tap((response: HttpResponse<User>) => {
         // login successful if there's a jwt token in the response
-        let user = response.body;// the returned user object is a principal object
+        let user = response;// the returned user object is a principal object
         if (user) {
           // store user details  in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -31,7 +31,7 @@ export class AuthenticationService {
 
   logOut() {
     // remove user from local storage to log user out
-    return this.http.post(constants.PATHS.LOGOUT,{})
+    return this.http.post("/api/account/logout",{})
       .pipe( tap((response: HttpResponse<any>) => {
         localStorage.removeItem('currentUser');
       }));
