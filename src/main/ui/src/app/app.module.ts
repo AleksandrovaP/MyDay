@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRouting } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ClarityModule } from '@clr/angular';
 
 import { AccountService } from './service/account.service';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
@@ -27,6 +28,7 @@ import { AuthGuard } from './guards/auth-guard';
   imports: [
     AppRouting,
     BrowserModule,
+    ClarityModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
