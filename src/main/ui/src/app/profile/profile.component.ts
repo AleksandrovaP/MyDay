@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../service/account.service';
 import { LogHoursComponent } from './log-hours/log-hours.component';
 import { Employee } from '../model/employee.model';
+import { UserRole } from '../model/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,8 @@ export class ProfileComponent implements OnInit {
 
   public user: Employee;
   public loading: boolean = true;
+  private username: string;
+  private userRole: UserRole;
 
   constructor(private accountService: AccountService,
               private router: Router,
@@ -24,6 +27,8 @@ export class ProfileComponent implements OnInit {
   public ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       if (params.username && params.role) {
+        this.username = params.username;
+        this.userRole = params.role;
         this.accountService.getUser(params.username, params.role)
           .subscribe((user) => {
             this.user = user;
@@ -35,5 +40,14 @@ export class ProfileComponent implements OnInit {
 
   public add(): void {
     this.addHoursComponent.isOpen = true;
+  }
+
+  public onModalClosed(): void {
+    this.loading = true;
+    this.accountService.getUser(this.username, this.userRole)
+      .subscribe((user) => {
+        this.user = user;
+        this.loading = false;
+      });
   }
 }

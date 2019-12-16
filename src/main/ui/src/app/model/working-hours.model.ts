@@ -1,5 +1,6 @@
 export class WorkingHours {
+  employeeId: number;
   date: number;
   projectName: string;
-  logh: string;
+  hours: string;
 }

@@ -16,7 +16,7 @@
 <clr-datagrid class="main-datagrid" [clrDgLoading]="loading">
   <!-- columns -->
   <clr-dg-column [clrDgField]="'projectName'" class="no-filter">Project name</clr-dg-column>
-  <clr-dg-column [clrDgField]="'logh'" class="no-filter">Working hours</clr-dg-column>
+  <clr-dg-column [clrDgField]="'hours'" class="no-filter">Working hours</clr-dg-column>
   <clr-dg-column [clrDgField]="'date'" class="no-filter">Date</clr-dg-column>
 
   <clr-dg-placeholder>
@@ -26,14 +26,14 @@
   <!-- rows -->
   <clr-dg-row *clrDgItems="let item of user?.workingh" [clrDgItem]="item">
     <clr-dg-cell>{{ item.projectName }}</clr-dg-cell>
-    <clr-dg-cell>{{ item.logh }}</clr-dg-cell>
-    <clr-dg-cell>{{ item.date }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.hours }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.date  | date }}</clr-dg-cell>
   </clr-dg-row>
 
   <!-- pagination -->
   <clr-dg-footer>
-     <span>{{ user?.loghours?.length || 0 }} results</span>
+     <span>{{ user?.workingh?.length || 0 }} results</span>
   </clr-dg-footer>
 </clr-datagrid>
 
-<app-log-hours></app-log-hours>
+<app-log-hours [employee]="user" (modalClosed)="onModalClosed($event)"></app-log-hours>

@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClrLoadingState } from '@clr/angular';
 import { WorkingHours } from '../../model/working-hours.model';
 import { EmployeeService } from '../../service/employee.service';
+import { Employee } from '../../model/employee.model';
 
 @Component({
   selector: 'app-log-hours',
@@ -12,6 +13,9 @@ import { EmployeeService } from '../../service/employee.service';
 export class LogHoursComponent {
 
   @Input() public isOpen: boolean = false;
+  @Input() public employee: Employee;
+
+  @Output() public modalClosed: EventEmitter<any> = new EventEmitter();
 
   public addHoursForm: FormGroup;
   public addButtonState: ClrLoadingState = ClrLoadingState.DEFAULT;
@@ -23,7 +27,7 @@ export class LogHoursComponent {
 
     this.addHoursForm = this.formBuilder.group({
       projectName: ['', Validators.required],
-      logh: ['', Validators.required],
+      hours: ['', Validators.required],
       date: ['', Validators.required]
     });
   }
@@ -42,8 +46,10 @@ export class LogHoursComponent {
     let date = new Date(this.workingHours.date);
     let timestamp = date.getTime();
     this.workingHours.date = timestamp;
+    this.workingHours.employeeId = this.employee.id;
 
     this.employeeService.logHours(this.workingHours).subscribe((response) => {
+      this.modalClosed.emit(this.workingHours);
       this.addButtonState = ClrLoadingState.SUCCESS;
       this.isOpen = false;
       this.clearForm();
@@ -57,7 +63,7 @@ export class LogHoursComponent {
   private clearForm() {
     this.addHoursForm.patchValue({
       projectName: '',
-      logh: '',
+      hours: '',
       date: ''
     });
   }

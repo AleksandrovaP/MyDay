@@ -20,4 +20,12 @@ export class ListEmployeesComponent implements OnInit {
       this.employees = data;
     });
   }
+
+  public add(): void {
+    // TODO: implement
+  }
+
+  public remove(): void {
+    // TODO: implement
+  }
 }

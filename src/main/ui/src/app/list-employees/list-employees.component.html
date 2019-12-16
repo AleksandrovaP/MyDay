@@ -1,25 +1,37 @@
-
-<link rel="stylesheet" href="https://unpkg.com/@clr/ui/clr-ui.min.css" />
-<!-- <link rel="stylesheet" href="list-employees.component.scss"> -->
-<button>Add employee</button>
-<button>Delete employee</button>
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped" >
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employees">
-          <td>{{ employee.id }}</td>
-          <td>{{ employee.name }}</td>
-          <td><a href="mailto:{{ employee.email }}">{{ employee.email }}</a></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="main-heading">
+  <div toolbar>
+    <!-- buttons -->
+    <clr-dg-action-bar>
+      <clr-button-group [clrMenuPosition]="'bottom-right'" class="btn-sm">
+        <!-- add -->
+        <clr-button type="button" class="btn btn-sm btn-secondary" (click)="add()">
+          <clr-icon shape="plus" class="action-button"></clr-icon>Add employee</clr-button>
+        <!-- remove -->
+        <clr-button type="button" class="btn btn-sm btn-secondary" (click)="remove()">
+          <clr-icon shape="close" class="action-button"></clr-icon>Remove employee</clr-button>
+      </clr-button-group>
+    </clr-dg-action-bar>
   </div>
 </div>
+
+<!-- Datagrid -->
+<clr-datagrid class="main-datagrid" [clrDgLoading]="loading">
+  <!-- columns -->
+  <clr-dg-column [clrDgField]="'name'" class="no-filter">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'email'" class="no-filter">Email</clr-dg-column>
+
+  <clr-dg-placeholder>
+    <div class="placeholder" *ngIf="!loading">No employees found</div>
+  </clr-dg-placeholder>
+
+  <!-- rows -->
+  <clr-dg-row *clrDgItems="let employee of employees" [clrDgItem]="employee">
+    <clr-dg-cell>{{ employee.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ employee.email }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <!-- pagination -->
+  <clr-dg-footer>
+    <span>{{ employees?.length || 0 }} employees</span>
+  </clr-dg-footer>
+</clr-datagrid>
