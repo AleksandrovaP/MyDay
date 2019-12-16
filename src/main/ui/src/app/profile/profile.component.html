@@ -15,28 +15,25 @@
 <!-- Datagrid -->
 <clr-datagrid class="main-datagrid" [clrDgLoading]="loading">
   <!-- columns -->
-  <clr-dg-column [clrDgField]="'project'">Project</clr-dg-column>
-  <clr-dg-column [clrDgField]="'url'">Work</clr-dg-column>
+  <clr-dg-column [clrDgField]="'projectName'" class="no-filter">Project name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'logh'" class="no-filter">Working hours</clr-dg-column>
+  <clr-dg-column [clrDgField]="'date'" class="no-filter">Date</clr-dg-column>
 
   <clr-dg-placeholder>
-    <div class="placeholder" *ngIf="!loading">No repositories added</div>
+    <div class="placeholder" *ngIf="!loading">No working hours added</div>
   </clr-dg-placeholder>
 
   <!-- rows -->
-  <clr-dg-row *clrDgItems="let item of items" [clrDgItem]="item">
-    <clr-dg-cell>{{ item.name }}</clr-dg-cell>
-    <clr-dg-cell>{{ item.url }}</clr-dg-cell>
+  <clr-dg-row *clrDgItems="let item of user?.workingh" [clrDgItem]="item">
+    <clr-dg-cell>{{ item.projectName }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.logh }}</clr-dg-cell>
+    <clr-dg-cell>{{ item.date }}</clr-dg-cell>
   </clr-dg-row>
 
   <!-- pagination -->
   <clr-dg-footer>
-    <clr-dg-pagination #pagination [clrDgPageSize]="20">
-      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Repositories per page</clr-dg-page-size>
-      <span *ngIf="pagination?.totalItems > 0">
-        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
-      </span>
-      <span *ngIf="pagination?.totalItems === 0">0 of 0</span>
-      repositories
-    </clr-dg-pagination>
+     <span>{{ user?.loghours?.length || 0 }} results</span>
   </clr-dg-footer>
 </clr-datagrid>
+
+<app-log-hours></app-log-hours>

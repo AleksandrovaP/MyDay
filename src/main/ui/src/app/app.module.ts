@@ -15,6 +15,8 @@ import { ListEmployeesComponent } from './list-employees/list-employees.componen
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from './guards/auth-guard';
+import { LogHoursComponent } from './profile/log-hours/log-hours.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,13 @@ import { AuthGuard } from './guards/auth-guard';
     ListEmployeesComponent,
     LoginComponent,
     ProfileComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LogHoursComponent,
   ],
   imports: [
     AppRouting,
     BrowserModule,
+    BrowserAnimationsModule,
     ClarityModule,
     FormsModule,
     HttpClientModule,

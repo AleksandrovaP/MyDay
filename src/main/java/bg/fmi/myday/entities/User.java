@@ -33,16 +33,16 @@ public  class User implements UserDetails {
 
     private String role;
 
-    private String fullName;
+    private String name;
 
     public User() {
 
     }
 
-    public User(String username,String password,String fullName) {
+    public User(String username,String password,String name) {
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
+        this.name = name;
     }
 
     @JsonIgnore
@@ -111,12 +111,12 @@ public  class User implements UserDetails {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getname() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public Long getId() {

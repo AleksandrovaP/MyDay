@@ -41,11 +41,10 @@ public class AccountController {
                     new UserAccessError("user with username " + newUser.getUsername() + "already exist "),
                     HttpStatus.CONFLICT);
         }
-        newUser.setRole("USER");
 
         User user = userService.save(newUser);
         if (user.getRole().equals("employee")) {
-            Employee employee = new Employee(user.getFullName(), user.getUsername());
+            Employee employee = new Employee(user.getname(), user.getUsername());
             employeeService.save(employee);
         } else {
            // TODO: do the same for manager

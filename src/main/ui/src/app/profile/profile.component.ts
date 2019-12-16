@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../service/authentication.service';
-import { User } from '../model/user.model';
 import { AccountService } from '../service/account.service';
+import { LogHoursComponent } from './log-hours/log-hours.component';
+import { Employee } from '../model/employee.model';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +10,10 @@ import { AccountService } from '../service/account.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public user: User;
+  @ViewChild(LogHoursComponent, {static: false}) addHoursComponent: LogHoursComponent;
+
+  public user: Employee;
+  public loading: boolean = true;
 
   constructor(private accountService: AccountService,
               private router: Router,
@@ -22,12 +25,15 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       if (params.username && params.role) {
         this.accountService.getUser(params.username, params.role)
-          .subscribe((user) => this.user = user);
+          .subscribe((user) => {
+            this.user = user;
+            this.loading = false;
+          });
       }
     });
   }
 
   public add(): void {
-
+    this.addHoursComponent.isOpen = true;
   }
 }

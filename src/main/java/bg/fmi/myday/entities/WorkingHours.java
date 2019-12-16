@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 @Entity
 public class WorkingHours {
 
@@ -12,7 +13,7 @@ public class WorkingHours {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private int hours;
-    private LocalDateTime date;
+    private Date date;
     private String ProjectName;
 
     public int getHours() {
@@ -32,11 +33,11 @@ public class WorkingHours {
     }
 
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -6,7 +6,8 @@ const PATHS = {
   LOGIN: '/api/account/login',
   LOGOUT: '/api/logout',
   REGISTER: '/api/account/register',
-  EMPLOYEE: '/api/employees'
+  EMPLOYEE: '/api/employees',
+  LOG_HOURS: '/api/employees/loghours'
 };
 
 // Export constants
