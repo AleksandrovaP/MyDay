@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from '../model/employee.model';
 import { Observable } from 'rxjs';
+import { WorkingHours } from '../model/working-hours.model';
+import { constants } from '../util/constants';
 
 @Injectable()
 export class EmployeeService {
@@ -18,5 +20,9 @@ export class EmployeeService {
 
   public save(employee: Employee) {
     return this.http.post<Employee>(this.employeesUrl, employee);
+  }
+
+  public logHours(workingHours: WorkingHours) {
+    return this.http.post(constants.PATHS.LOG_HOURS, workingHours);
   }
 }

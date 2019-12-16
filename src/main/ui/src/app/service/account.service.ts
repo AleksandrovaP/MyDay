@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User, UserRole } from '../model/user.model';
 import { constants } from '../util/constants';
 import { map } from 'rxjs/operators';
+import { Employee } from '../model/employee.model';
 
 @Injectable()
 export class AccountService {
@@ -16,7 +17,7 @@ export class AccountService {
   public getUser(username: string, role: UserRole) {
     if (role === UserRole.EMPLOYEE) {
       return this.http.get(constants.PATHS.EMPLOYEE + '/' + username).pipe(
-        map((response: HttpResponse<any>) => response));
+        map((response: Employee) => response));
     }
   }
 }
