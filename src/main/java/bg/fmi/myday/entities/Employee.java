@@ -28,7 +28,8 @@ public class Employee {
     }
 
     private final String username;
-    @ManyToMany
+
+    @ManyToMany(cascade=CascadeType.ALL)
     private List<WorkingHours> workingh;
 
     public Employee() {

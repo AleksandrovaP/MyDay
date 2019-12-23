@@ -49,12 +49,14 @@ public class EmployeeController {
     @PostMapping("employees/loghours")
     public Employee  logHour(@RequestBody WorkingHours log, HttpSession session)
     {
-        Long id = (Long)session.getAttribute("id");
-        Optional<Employee> emp =  employeeRepository.findById(id);
-        Employee emp1 =emp.get();
+//        Long id = (Long)session.getAttribute("id");
+        Optional<Employee> employee = employeeRepository.findById(log.getEmployeeId());
+//        Optional<Employee> emp =  employeeRepository.findById(id);
+        Employee emp1 = employee.get();
         emp1.getWorkingh().add(log);
+        employeeRepository.save(emp1);
 
-        return employeeRepository.findById(id).get();
+        return employeeRepository.findById(log.getEmployeeId()).get();
 
     }
 }

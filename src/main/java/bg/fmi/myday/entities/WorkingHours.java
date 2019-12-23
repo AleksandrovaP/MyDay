@@ -12,9 +12,15 @@ public class WorkingHours {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    private long employeeId;
     private int hours;
     private Date date;
     private String ProjectName;
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
 
     public int getHours() {
         return hours;
