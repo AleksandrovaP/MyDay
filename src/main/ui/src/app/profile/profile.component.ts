@@ -4,6 +4,7 @@ import { AccountService } from '../service/account.service';
 import { LogHoursComponent } from './log-hours/log-hours.component';
 import { Employee } from '../model/employee.model';
 import { UserRole } from '../model/user.model';
+import { ChartsComponent } from './charts/charts.component';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,7 @@ import { UserRole } from '../model/user.model';
 })
 export class ProfileComponent implements OnInit {
   @ViewChild(LogHoursComponent, {static: false}) addHoursComponent: LogHoursComponent;
+  @ViewChild(ChartsComponent, {static: false}) chartsComponent: ChartsComponent;
 
   public user: Employee;
   public loading: boolean = true;
@@ -49,5 +51,9 @@ export class ProfileComponent implements OnInit {
         this.user = user;
         this.loading = false;
       });
+  }
+
+  public showCharts(): void {
+    this.chartsComponent.isOpen = true;
   }
 }

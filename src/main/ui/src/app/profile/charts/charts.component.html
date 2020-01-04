@@ -1,0 +1,24 @@
+<clr-modal *ngIf="isOpen" [(clrModalOpen)]="isOpen"
+           [clrModalSize]="'md'" [clrModalStaticBackdrop]="false">
+
+  <!-- Title -->
+  <h3 class="modal-title">Statistics</h3>
+
+  <!-- Charts -->
+  <div class="modal-body">
+    <ngx-charts-bar-vertical-stacked
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="'Date'"
+      [yAxisLabel]="'Hours'"
+      [timeline]="true"
+      [results]="chartsData">
+    </ngx-charts-bar-vertical-stacked>
+  </div>
+  <!-- Buttons -->
+  <div class="modal-footer">
+    <button (click)="onCancel()" class="btn btn-default">Cancel</button>
+  </div>
+</clr-modal>

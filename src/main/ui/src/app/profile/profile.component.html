@@ -7,6 +7,9 @@
         <!-- add -->
         <clr-button type="button" class="btn btn-sm btn-secondary" (click)="add()">
           <clr-icon shape="plus" class="action-button"></clr-icon>Add working hours</clr-button>
+        <!-- charts -->
+        <clr-button type="button" class="btn btn-sm btn-secondary" (click)="showCharts()">
+          <clr-icon shape="line-chart" class="action-button"></clr-icon>Show charts</clr-button>
       </clr-button-group>
     </clr-dg-action-bar>
   </div>
@@ -36,4 +39,5 @@
   </clr-dg-footer>
 </clr-datagrid>
 
-<app-log-hours [employee]="user" (modalClosed)="onModalClosed($event)"></app-log-hours>
+<app-log-hours [employee]="user" (modalClosed)="onModalClosed()"></app-log-hours>
+<app-charts [data]="user?.workingh" (modalClosed)="onModalClosed()"></app-charts>

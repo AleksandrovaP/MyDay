@@ -17,11 +17,14 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from './guards/auth-guard';
 import { LogHoursComponent } from './profile/log-hours/log-hours.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsComponent } from './profile/charts/charts.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
     AddEmployeeComponent,
     AppComponent,
+    ChartsComponent,
     ListEmployeesComponent,
     LoginComponent,
     ProfileComponent,
@@ -35,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ClarityModule,
     FormsModule,
     HttpClientModule,
+    NgxChartsModule,
     ReactiveFormsModule
   ],
   providers: [

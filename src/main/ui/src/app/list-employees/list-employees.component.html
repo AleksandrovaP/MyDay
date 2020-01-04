@@ -26,7 +26,7 @@
 
   <!-- rows -->
   <clr-dg-row *clrDgItems="let employee of employees" [clrDgItem]="employee">
-    <clr-dg-cell>{{ employee.name }}</clr-dg-cell>
+    <clr-dg-cell (click)="showCharts(employee)"><a>{{ employee.name }}</a></clr-dg-cell>
     <clr-dg-cell>{{ employee.email }}</clr-dg-cell>
   </clr-dg-row>
 
@@ -35,3 +35,5 @@
     <span>{{ employees?.length || 0 }} employees</span>
   </clr-dg-footer>
 </clr-datagrid>
+
+<app-charts [data]="employeeData" (modalClosed)="onModalClosed()"></app-charts>
